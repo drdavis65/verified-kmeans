@@ -56,7 +56,7 @@ centroids:
 First, compile the Dafny code to Python:
 
 ```bash
-dafny build KMeansTest.dfy --target py --output kmeans_out
+dafny build KMeansTest.dfy --target py --output kmeans_out --allow-warnings
 ```
 
 Then run the visualization script:
