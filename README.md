@@ -33,17 +33,22 @@ The test harness `KMeansTest.dfy` contains a `Main()` method with 100 hardcoded
 `kmeans`, and prints the convergence flag, per-point labels, and final centroids.
 
 ```bash
-dafny run KMeansTest.dfy --input kmeans.dfy --allow-warnings
+python3 gen_dafny_test.py
+dafny run KMeansTest.dfy --allow-warnings
 ```
 
 Sample output:
 ```
+initial centroids:
+  cluster 0: 2.631858338 0.6893649044 
+  cluster 1: -0.7300001121 6.2545627227 
+  cluster 2: -2.5271193606 1.3731111646 
 converged: true
 labels: 0 1 0 1 1 1 2 1 0 1 ...
 centroids:
-  cluster 0: 1.906...  1.281...
-  cluster 1: -0.618...  3.191...
-  cluster 2: -1.840...  3.677...
+  cluster 0: (738832643126.0 / 330000000000.0) (448776023750.0 / 330000000000.0) 
+  cluster 1: 0.894123123640625 4.340318742609375 
+  cluster 2: (-552015330439.0 / 350000000000.0) (998870051865.0 / 350000000000.0) 
 ```
 
 ### Option 2: Python visualization
@@ -51,21 +56,20 @@ centroids:
 First, compile the Dafny code to Python:
 
 ```bash
-dafny build KMeansTest.dfy --input kmeans.dfy --target py --output kmeans_out
+dafny build KMeansTest.dfy --target py --output kmeans_out
 ```
 
-Then run the visualization script from inside the output directory:
+Then run the visualization script:
 
 ```bash
-cd kmeans_out-py
-python visualize.py
+python3 visualize.py
 ```
 
 This generates a plot comparing the Dafny k-means result against the raw data.
 To save the plot to a file instead of displaying it:
 
 ```bash
-python visualize.py --output ../Figure_1.png
+python3 visualize.py --output ../Figure_1.png
 ```
 
 Key options for `visualize.py`:
@@ -95,7 +99,7 @@ python3 gen_dafny_test.py 5 100 --n-samples 200 --random-state 42
 dafny run KMeansTest.dfy --allow-warnings
 ```
 
-Key options for `gen_dafny_test.py`:
+Options for `gen_dafny_test.py`:
 
 | Flag | Default | Description |
 |------|---------|-------------|
