@@ -28,9 +28,9 @@ Expected output: all methods verify with no errors.
 
 ### Option 1: Dafny run (quickest)
 
-The test harness `KMeansTest.dfy` contains a `Main()` method with 100 hardcoded
-2D points. It calls `DeterministicKMeansInitCentroids` to seed the centroids, runs
-`kmeans`, and prints the convergence flag, per-point labels, and final centroids.
+The test harness `KMeansTest.dfy` calls `MakePoints()` from `data.dfy`, runs
+`DeterministicKMeansInitCentroids` and `KMeans`, and prints the convergence flag,
+per-point labels, and final centroids.
 
 ```bash
 python3 gen_dafny_test.py

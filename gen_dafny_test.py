@@ -4,11 +4,11 @@ gen_dafny_test.py
 Generates data.dfy — the dataset used by the static KMeansTest.dfy harness.
 
 Usage:
-  python gen_dafny_test.py <k> <max_iter> [options]
+  python3 gen_dafny_test.py [k] [max_iter] [options]
 
-Arguments:
-  k               Number of clusters (also passed to make_blobs as centers=k)
-  max_iter        Maximum kmeans iterations
+Arguments (optional, positional):
+  k               Number of clusters (default: 3)
+  max_iter        Maximum kmeans iterations (default: 100)
 
 Data generation options (all optional):
   --n-samples N       Number of points to generate        (default: 100)
@@ -33,8 +33,8 @@ import argparse
 
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("k", type=int, help="Number of clusters")
-    p.add_argument("max_iter", type=int, help="Maximum kmeans iterations")
+    p.add_argument("k", type=int, nargs="?", default=3, help="Number of clusters (default: 3)")
+    p.add_argument("max_iter", type=int, nargs="?", default=100, help="Maximum kmeans iterations (default: 100)")
     p.add_argument("--n-samples",    type=int,   default=100,   metavar="N")
     p.add_argument("--n-features",   type=int,   default=2,     metavar="N")
     p.add_argument("--center-box",   type=float, default=(-10, 10), nargs=2, metavar=("LO", "HI"))
